@@ -1,0 +1,79 @@
+\batchmode
+\makeatletter
+\def\input@path{{/Users/jiangyefei/github/LaTeX&R/LaTeX-R//}}
+\makeatother
+\documentclass{article}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\providecommand{\LyX}{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+\DeclareRobustCommand*{\lyxarrow}{%
+\@ifstar
+{\leavevmode\,$\triangleleft$\,\allowbreak}
+{\leavevmode\,$\triangleright$\,\allowbreak}}
+
+\makeatother
+
+%
+\usepackage{xunicode}
+\begin{document}
+
+\title{pgfSweave under \LyX{} 2.0 (beta)}
+
+
+\date{Yihui Xie}
+
+\maketitle
+Since \LyX{} 2.0, you will be able to use Sweave with \emph{any} document
+classes, because it is now a \emph{module} instead of a \emph{layout}.
+A module can be inserted in any \LyX{} documents by \textsf{Document}\lyxarrow{}\textsf{Settings}\lyxarrow{}\textsf{Modules}\lyxarrow{}\textsf{pgfSweave}.
+Note the environment for Sweave has been renamed to \textsf{Chunk},
+but the former name \textsf{Scrap} is compatible, so you do not need
+to worry about anything if you have been using \LyX{} 1.6.x.
+
+Here comes a few toy examples:
+
+<<test1>>=
+rnorm(5)+runif(5)
+@
+
+\selectlanguage{english}%
+There will not be blank lines between R code lines, so you can turn
+off the Sweave option \texttt{tidy} and turn on \texttt{keep.source}
+to preserve your own formatting:
+
+<<test2, eval=FALSE, keep.source=TRUE, tidy=FALSE>>=
+legend("bottomright"
+       ,legend = sprintf("$\\hat{Y} = %.2f + %.2fx\sum_{i=1}^{m}x^{2}$"
+       ,coef(model)[1]
+       ,coef(model)[2])
+       ,bty = "n"
+)
+@
+
+\selectlanguage{english}%
+Lazy guys can leave the job of formatting R code to the \texttt{tidy}
+option:
+
+<<test3, eval=FALSE, tidy=TRUE>>=
+legend("bottomright"
+       ,legend = sprintf("$\\hat{Y} = %.2f + %.2fx$"
+       ,coef(model)[1]
+       ,coef(model)[2])
+       ,bty = "n"
+)
+@
+<<test11>>=
+x <- 1:100 
+mui <- rnorm(100,mean=0,sd=5) 
+y <- x+mui
+@
+
+Draw a plot for the data: 
+
+<<test2, fig=TRUE, results=hide>>= 
+plot(x,y) 
+@
+
+\end{document}
