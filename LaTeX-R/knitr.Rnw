@@ -1,0 +1,76 @@
+\batchmode
+\makeatletter
+\def\input@path{{/Users/jiangyefei/github/LaTeX&R/LaTeX-R//}}
+\makeatother
+\documentclass{article}
+\usepackage{mathpazo}
+\renewcommand{\sfdefault}{lmss}
+\renewcommand{\ttdefault}{lmtt}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2.5cm,bmargin=2.5cm,lmargin=2.5cm,rmargin=2.5cm}
+\usepackage{url}
+\usepackage[unicode=true]
+ {hyperref}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\providecommand{\LyX}{\texorpdfstring%
+  {L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+  {LyX}}
+\DeclareRobustCommand*{\lyxarrow}{%
+\@ifstar
+{\leavevmode\,$\triangleleft$\,\allowbreak}
+{\leavevmode\,$\triangleright$\,\allowbreak}}
+
+\makeatother
+
+\usepackage{xunicode}
+\begin{document}
+
+\title{Using knitr with \LyX{}}
+
+
+\author{Yihui Xie%
+\thanks{Department of Statistics, Iowa State University. Email: \protect\href{mailto:xie@yihui.name}{xie@yihui.name}%
+}}
+
+\maketitle
+The R (\url{http://www.r-project.org}) package \textbf{knitr} is
+an alternative tool to Sweave based on a different design with more
+features. \LyX{} has native support to Sweave since version 2.0.0,
+and the support to \textbf{knitr} was also added since 2.0.3. The
+usage is basically the same as the \textsf{Sweave} module%
+\footnote{read the \LyX{}/Sweave manual from \textsf{Help\lyxarrow{}Specific
+Manuals}%
+}:
+\begin{enumerate}
+\item Open a new \LyX{} document;
+\item Go to \textsf{Document\lyxarrow{}Settings\lyxarrow{}Modules} and
+insert the module named \textsf{Rnw (knitr)};
+\item Then insert R code in the document with either \textsf{Insert\lyxarrow{}\TeX{}
+Code} or the \textsf{Chunk} environment;
+\end{enumerate}
+The package website \url{http://yihui.name/knitr/} has full documentation
+and demos of \textbf{knitr}; many of the examples have links to the
+\LyX{} source documents.
+
+Note the \textbf{knitr} package requires R \textgreater{}= 2.14.1,
+so you need to update R if you are using an old version of R. Here
+we show one chunk as a simple example:
+
+<<show-off>>=
+rnorm(5)
+df=data.frame(y=rnorm(100), x=1:100)
+summary(lm(y~x, data=df))
+@
+
+Please contact the package author in case of any problems.
+
+<<show-off>>=
+rnorm(5)
+df=data.frame(y=rnorm(100), x=1:100)
+summary(lm(y~x, data=df))
+@
+
+\end{document}
