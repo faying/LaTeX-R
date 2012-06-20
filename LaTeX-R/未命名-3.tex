@@ -1,0 +1,31 @@
+\documentclass[10pt]{article}
+\usepackage{threeparttable}
+\usepackage{amsmath}
+\usepackage{dcolumn}
+\usepackage{multirow}
+\usepackage{booktabs}
+\newcolumntype{d}[1]{D{.}{.}{#1}}% or D{.}{,}{#1} or D{.}{\cdot}{#1}
+\begin{document}
+
+\begin{table}[!htpb]
+\centering
+\begin{threeparttable}[b]
+ \caption{A case of table}
+ \begin{tabular}{ccd{4}cccc}
+   \toprule
+   \multirow{2}{6mm}{total}&\multicolumn{2}{c}{20\tnote{1}} & \multicolumn{2}{c}{40} &  \multicolumn{2}{c}{60}\\
+   \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+   &www & k & www & k & www & k \\
+   \midrule
+   &$\underset{(2.12)}{4.22}$ & 120.0140\tnote{2} & 333.15 & 0.0411 & 444.99 & 0.1387 \\
+   &168.6123 & 10.86 & 255.37 & 0.0353 & 376.14 & 0.1058 \\
+   &6.761    & 0.007 & 235.37 & 0.0267 & 348.66 & 0.1010 \\
+   \bottomrule
+ \end{tabular}
+ \begin{tablenotes}
+  \item [1] the first note.% or \item [a]
+    \item [2] the second note.% or \item [b]
+   \end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{document}
